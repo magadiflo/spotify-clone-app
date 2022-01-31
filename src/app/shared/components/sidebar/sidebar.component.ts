@@ -1,16 +1,74 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+
+interface Menu {
+  name: string,
+  icon?: string,
+  router?: string[],
+}
+
+interface Opciones {
+  defaultOptions: Menu[],
+  accessLink: Menu[],
+}
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styles: [
-  ]
+  styleUrls: ['./sidebar.component.css']
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent {
 
-  constructor() { }
+  defaultOptions: Menu[] = [
+    {
+      name: 'Home',
+      icon: 'uil uil-estate',
+      router: ['/', 'auth']
+    },
+    {
+      name: 'Buscar',
+      icon: 'uil uil-search',
+      router: ['/', 'history']
+    },
+    {
+      name: 'Tu biblioteca',
+      icon: 'uil uil-chart',
+      router: ['/', 'favorites']
+    }
+  ];
 
-  ngOnInit(): void {
+  accessLink: Menu[] = [
+    {
+      name: 'Crear lista',
+      icon: 'uil-plus-square'
+    },
+    {
+      name: 'Canciones que te gustan',
+      icon: 'uil-heart-medical'
+    }
+  ];
+
+  customOptions: Menu[] = [
+    {
+      name: 'Mi lista º1',
+      router: ['/']
+    },
+    {
+      name: 'Mi lista º2',
+      router: ['/']
+    },
+    {
+      name: 'Mi lista º3',
+      router: ['/']
+    },
+    {
+      name: 'Mi lista º4',
+      router: ['/']
+    }
+  ];
+
+  mainMenu: Opciones = {
+    defaultOptions: this.defaultOptions,
+    accessLink: this.accessLink
   }
 
 }
