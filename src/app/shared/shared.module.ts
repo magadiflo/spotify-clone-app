@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { MediaPlayerComponent } from './components/media-player/media-player.component';
@@ -31,7 +32,8 @@ import { PlayListBodyComponent } from './components/play-list-body/play-list-bod
     PlayListBodyComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule,
   ]
 })
 export class SharedModule { }
