@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { AuthService } from '../../services/auth.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,15 +15,16 @@ export class LoginComponent implements OnInit {
     password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(12)]],
   });
 
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
   }
 
   sendLogin(): void {
-    console.log('Dos formas de obtener los valores');  
-    console.log('1ra forma: ', this.miFormulario.get('email')?.value);
-    console.log('2da forma: ', this.miFormulario.controls['password'].value);  
+    const {email, password} = this.miFormulario.value;
+    this.authService.sendCredentials(email, password);
   }
 
 }
