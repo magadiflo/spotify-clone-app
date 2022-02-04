@@ -21,7 +21,12 @@ export class TracksComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.trackService.getAllTracks$()
       .subscribe(resp => {
-        console.log(resp); 
+        this.tracksTrending = resp;        
+      });
+
+    this.trackService.getAllRandom$()
+      .subscribe(resp => {
+        this.tracksRandom = resp;        
       });
   }
   
