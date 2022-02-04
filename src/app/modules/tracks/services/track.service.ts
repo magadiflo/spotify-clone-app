@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { TrackModel } from '@core/models/track.model';
 
-import { map, Observable } from 'rxjs';
+import { catchError, map } from "rxjs/operators";
+import { Observable, of } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 
@@ -25,7 +26,8 @@ export class TrackService {
   getAllRandom$(): Observable<TrackModel[]> {
     return this.http.get<{ data: TrackModel[] }>(`${this.URL}/tracks`)
       .pipe(
-        map(resp => resp.data.reverse())
+        map(resp => resp.data.reverse()),
+        catchError(err => of([]))
       );
   }
 
