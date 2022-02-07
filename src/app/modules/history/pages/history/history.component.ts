@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable, of } from 'rxjs';
 
 import { SearchService } from '../../services/search.service';
 
@@ -11,7 +12,7 @@ import { TrackModel } from '@core/models/track.model';
 })
 export class HistoryComponent implements OnInit {
 
-  listResults: TrackModel[] = [];
+  listResults$: Observable<any> = of([]);
 
   constructor(private searchService: SearchService) { }
 
@@ -20,10 +21,7 @@ export class HistoryComponent implements OnInit {
 
   receiveData(term: string): void {
     console.log('Recibiendo término en history: ' + term);
-    this.searchService.searchTracks$(term)
-      .subscribe(({data}) => {
-        this.listResults = data;  
-      }); 
+    this.listResults$ = this.searchService.searchTracks$(term);
   }
 
 }

@@ -1,4 +1,4 @@
 <div class="history-page">
     <app-search (termData)="receiveData($event)"></app-search>
-    <app-play-list-body [tracksList]="listResults"></app-play-list-body>
+    <app-play-list-body [tracksList]="listResults$ | async"></app-play-list-body>
 </div>
