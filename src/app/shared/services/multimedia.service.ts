@@ -1,5 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Observer, Subject } from 'rxjs';
+import { TrackModel } from '../../core/models/track.model';
 
 @Injectable({
   providedIn: 'root'
@@ -7,33 +8,22 @@ import { BehaviorSubject, Observable, Observer, Subject } from 'rxjs';
 export class MultimediaService {
 
   callback: EventEmitter<any> = new EventEmitter<any>();
-  // myObservable1$: Observable<any> = new Observable();
-  // myObservable1$: Subject<any> = new Subject();
-  myObservable1$: BehaviorSubject<any> = new BehaviorSubject('Inicializado con agua...');
-// 
+  public trackInfo$: BehaviorSubject<any> = new BehaviorSubject(undefined);
+  public audio!: HTMLAudioElement;
 
   constructor() {
-    /*********** Observable **************** */
-    // this.myObservable1$ = new Observable((observer: Observer<any>) => {
-    //   observer.next('Sí, agua...');
-    //   observer.complete();
-    //   observer.error('Hubo un error papi...');
-    // });
+    this.audio = new Audio();
+    this.trackInfo$.subscribe(res => {
+      if (res) {
+        this.setAudio(res);
+      }
+    });
+  }
 
-    //************* Subject y BehaviorSubject **************** */
-    setTimeout(() => {
-      this.myObservable1$.next('enviandoo agua desde multimedia...');
-    }, 1000);
-
-    setTimeout(() => {
-      this.myObservable1$.error('set tapó la tubería');
-    }, 2000);
-
-    setTimeout(() => {
-      this.myObservable1$.complete();
-    }, 3000);
-
-    
+  public setAudio(track: TrackModel): void {
+    console.log('setAudio(...)', track);
+    this.audio.src = track.url;
+    this.audio.play();
   }
 
 }

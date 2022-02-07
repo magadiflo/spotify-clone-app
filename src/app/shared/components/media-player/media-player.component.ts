@@ -13,30 +13,12 @@ import { TrackModel } from '@core/models/track.model';
   styleUrls: ['./media-player.component.css']
 })
 export class MediaPlayerComponent implements OnInit, OnDestroy {
-
+  
   listObservers: Subscription[] = [];
 
-  constructor(private multimediaService: MultimediaService) { }
+  constructor(public multimediaService: MultimediaService) { }
 
-  ngOnInit(): void {
-    const observer: Subscription = this.multimediaService.callback
-      .subscribe((resp: TrackModel) => {
-        console.log('Recibiendo canción', resp);
-      });
-    this.listObservers.push(observer);
-
-    const observable1$ = this.multimediaService.myObservable1$
-      .subscribe({
-        next: (res) => {
-          console.log('llegó el agua? ' + res);
-        },
-        error: (err) => {
-          console.log('Error de agua? ' + err);
-        },
-        complete: () => {
-          console.log('Finalizooo...');
-        }
-      });
+  ngOnInit(): void { 
   }
 
   ngOnDestroy(): void {
