@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { TrackModel } from '@core/models/track.model';
-import * as dataRaw from '../../../data/tracks.json';
 
 interface OptionSort {
   property: string | null,
@@ -15,7 +14,7 @@ interface OptionSort {
 })
 export class PlayListBodyComponent implements OnInit {
 
-  mockTracksList: TrackModel[] = [];
+  @Input() tracksList: TrackModel[] = [];
   optionSort: OptionSort = {
     property: null,
     order: 'asc',
@@ -24,8 +23,7 @@ export class PlayListBodyComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    const { data }: any = (dataRaw as any).default;
-    this.mockTracksList = data;
+
   }
 
   changeSort(property: string): void {
