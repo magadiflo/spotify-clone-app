@@ -32,32 +32,32 @@
 </ng-template>
 
 <ng-template #playerZone>
-    <!-- <div class="player-controls-inside">
+    <div class="player-controls-inside">
         <div class="buttons-media">
-            <button class="arrow btn">
+            <button type="button" aria-label="previous" class="arrow btn">
                 <i class="uil uil-previous"></i>
             </button>
-            <button (click)="multimediaService.togglePlayer()" class="play btn">
+            <!-- <button type="button" aria-label="paused" (click)="multimediaService.togglePlayer()" class="play btn">
                 <i [ngClass]="{
                     'uil-play-circle':state === 'paused',
                     'uil-pause-circle':state !== 'paused'
                 }" class="uil "></i>
 
-            </button>
-            <button class="arrow btn">
+            </button> -->
+            <button type="button" aria-label="forward" class="arrow btn">
                 <i class="uil uil-step-forward"></i>
             </button>
         </div>
         <div class="media-linetime">
 
             <div class="time">{{multimediaService.timeElapsed$ | async}}</div>
-            <span #progressBar (click)="handlePosition($event)" class="time-progress">
+            <!-- <span #progressBar (click)="handlePosition($event)" class="time-progress">
                 <span class="time-progress-live" [style.width]="(multimediaService.playerPercentage$ | async)+'%'">
                 </span>
-            </span>
+            </span> -->
             <div class="time">{{multimediaService.timeRemaining$ | async}}</div>
         </div>
-    </div> -->
+    </div>
 </ng-template>
 
 <ng-template #playerAudio>
